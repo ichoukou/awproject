@@ -53,7 +53,7 @@ public class WechatController extends Controller{
 			renderText(echostr);
 			return;
 		}
-		render("关注成功！");
+		renderText("关注成功！");
 		
 	}
 	

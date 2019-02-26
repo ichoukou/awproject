@@ -16,7 +16,7 @@ public class MenuManger {
 	 * @Title: CheckMenu
 	 * @return: void
 	 */
-	public void CheckMenu() { 
+	public void CheckMenu() {
 		try {
 			// 1.获取公众号自定义菜单
 			// 2.判断是否已经存在自定义菜单
@@ -27,14 +27,14 @@ public class MenuManger {
 				businessButton.setName("业务办理2");
 				businessButton.setType(WxConsts.BUTTON_VIEW);
 				businessButton.setUrl(buildAuthorizationUrl(
-						"http://lxq2017.imwork.net/SSH_Wechat/framework/user/business.action",
+						"http://kgextj.natappfree.cc",
 						WxConsts.OAUTH2_SCOPE_BASE, null));
 
 				WxMenuButton mineButton = new WxMenuButton();
 				mineButton.setType(WxConsts.BUTTON_VIEW);
 				mineButton.setName("我的订单去");
 				mineButton.setUrl(
-						buildAuthorizationUrl("http://lxq2017.imwork.net/YHsys/wechatController/page/mine.action",
+						buildAuthorizationUrl("http://kgextj.natappfree.cc",
 								WxConsts.OAUTH2_SCOPE_BASE, null));
 
 				WxMenuButton yhButton = new WxMenuButton();
@@ -53,14 +53,14 @@ public class MenuManger {
 				luButton.setType(WxConsts.BUTTON_VIEW);
 				luButton.setName("联系我们");
 				luButton.setUrl(
-						buildAuthorizationUrl("http://lxq2017.imwork.net/YHsys/wechatController/page/callus.action",
+						buildAuthorizationUrl("http://kgextj.natappfree.cc",
 								WxConsts.OAUTH2_SCOPE_BASE, null));
 
 				WxMenuButton auButton = new WxMenuButton();
 				auButton.setType(WxConsts.BUTTON_VIEW);
 				auButton.setName("关于我们");
 				auButton.setUrl(
-						buildAuthorizationUrl("http://lxq2017.imwork.net/YHsys/wechatController/page/aboutUs.action",
+						buildAuthorizationUrl("http://kgextj.natappfree.cc",
 								WxConsts.OAUTH2_SCOPE_BASE, null));
 
 				yhButton.getSubButtons().add(newsButton);
@@ -78,14 +78,14 @@ public class MenuManger {
 				businessButton.setName("业务办理3");
 				businessButton.setType(WxConsts.BUTTON_VIEW);
 				businessButton.setUrl(buildAuthorizationUrl(
-						"http://lxq2017.imwork.net/SSH_Wechat/framework/user/business.action",
+						"http://kgextj.natappfree.cc",
 						WxConsts.OAUTH2_SCOPE_BASE, null));
 
 				WxMenuButton mineButton = new WxMenuButton();
 				mineButton.setType(WxConsts.BUTTON_VIEW);
 				mineButton.setName("我的订单去");
 				mineButton.setUrl(
-						buildAuthorizationUrl("http://lxq2017.imwork.net/YHsys/wechatController/page/mine.action",
+						buildAuthorizationUrl("http://kgextj.natappfree.cc",
 								WxConsts.OAUTH2_SCOPE_BASE, null));
 
 				WxMenuButton yhButton = new WxMenuButton();
@@ -104,14 +104,14 @@ public class MenuManger {
 				luButton.setType(WxConsts.BUTTON_VIEW);
 				luButton.setName("联系我们");
 				luButton.setUrl(
-						buildAuthorizationUrl("http://lxq2017.imwork.net/YHsys/wechatController/page/callus.action",
+						buildAuthorizationUrl("http://kgextj.natappfree.cc",
 								WxConsts.OAUTH2_SCOPE_BASE, null));
 
 				WxMenuButton auButton = new WxMenuButton();
 				auButton.setType(WxConsts.BUTTON_VIEW);
 				auButton.setName("关于我们");
 				auButton.setUrl(
-						buildAuthorizationUrl("http://lxq2017.imwork.net/YHsys/wechatController/page/aboutUs.action",
+						buildAuthorizationUrl("http://kgextj.natappfree.cc",
 								WxConsts.OAUTH2_SCOPE_BASE, null));
 				
 				yhButton.getSubButtons().add(newsButton);
@@ -150,7 +150,7 @@ public class MenuManger {
 	 */
 	public static void main(String[] args) {
 		MenuManger mm = new MenuManger();
-		String url = mm.buildAuthorizationUrl("http://lxq2017.imwork.net/YHsys/wechatController/page/mine.action",
+		String url = mm.buildAuthorizationUrl("http://kgextj.natappfree.cc",
 				WxConsts.OAUTH2_SCOPE_BASE, null);
 		System.out.println(url);
 	}
