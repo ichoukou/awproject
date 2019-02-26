@@ -12,8 +12,8 @@ import com.jfinal.plugin.redis.RedisPlugin;
 import com.jfinal.server.undertow.UndertowServer;
 import com.jfinal.template.Engine;
 import com.sunlotus.common.model._MappingKit;
-import com.sunlotus.sys.quartz.scan.QuartzScanner;
 import com.sunlotus.sys.until.Config;
+import com.sunlotus.wechat.listen.MenuMangerLister;
 
 /**
  * 本 demo 仅表达最为粗浅的 jfinal 用法，更为有价值的实用的企业级用法
@@ -104,7 +104,10 @@ public class YbMainConfig extends JFinalConfig {
 	 * 启动项目时执行
 	 */
 	public void afterJFinalStart(){
-		QuartzScanner.getInstance().Quzar();
+		//QuartzScanner.getInstance().Quzar();
+		
+		//初始化微信菜单
+		//new MenuMangerLister().InitWechatMenu();
 	}
 
 }
