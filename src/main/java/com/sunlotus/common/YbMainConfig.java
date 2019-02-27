@@ -48,8 +48,8 @@ public class YbMainConfig extends JFinalConfig {
 	 */
 	public void configConstant(Constants me) {
 		// 加载少量必要配置，随后可用PropKit.get(...)获取值
-		/*PropKit.use("a_little_config.txt");
-		me.setDevMode(PropKit.getBoolean("devMode", false));*/
+		/*PropKit.use("a_little_config.txt");*/
+		me.setDevMode(true);
 	}
 	
 	/**
@@ -81,7 +81,7 @@ public class YbMainConfig extends JFinalConfig {
 		// 配置ActiveRecord插件
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(c3p0Plugin);
 		//arp.setDialect(new SqlServerDialect());//注：更换sql server的时候需要添加这个，mysql不用。
-		arp.setShowSql(false);
+		arp.setShowSql(true);
 		_MappingKit.mapping(arp);
 		me.add(arp);
 	}

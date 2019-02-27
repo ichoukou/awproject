@@ -19,4 +19,8 @@ public class IndexController extends Controller {
 		setAttr("opendlog", opendlog);*/
 		render("/page/front/index.html");
 	}
+	
+	public void openlog(){
+		render("/page/front/log.html");
+	}
 }
