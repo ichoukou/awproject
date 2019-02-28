@@ -24,46 +24,46 @@ public class MenuManger {
 			if (wxMenuOld == null) {
 				WxMenu wxMenuNew = new WxMenu();
 				WxMenuButton businessButton = new WxMenuButton();
-				businessButton.setName("业务办理2");
+				businessButton.setName("大厅");
 				businessButton.setType(WxConsts.BUTTON_VIEW);
 				businessButton.setUrl(buildAuthorizationUrl(
-						"http://kgextj.natappfree.cc",
+						"http://54ime2.natappfree.cc",
 						WxConsts.OAUTH2_SCOPE_BASE, null));
 
 				WxMenuButton mineButton = new WxMenuButton();
 				mineButton.setType(WxConsts.BUTTON_VIEW);
-				mineButton.setName("我的订单去");
+				mineButton.setName("成员");
 				mineButton.setUrl(
-						buildAuthorizationUrl("http://kgextj.natappfree.cc",
+						buildAuthorizationUrl("http://54ime2.natappfree.cc/members",
 								WxConsts.OAUTH2_SCOPE_BASE, null));
 
 				WxMenuButton yhButton = new WxMenuButton();
-				yhButton.setName("Y是H");
+				yhButton.setName("更多");
 
 				wxMenuNew.getButtons().add(businessButton);
 				wxMenuNew.getButtons().add(mineButton);
 				wxMenuNew.getButtons().add(yhButton);
-
-				WxMenuButton newsButton = new WxMenuButton();
+				
+				/*WxMenuButton newsButton = new WxMenuButton();
 				newsButton.setType(WxConsts.BUTTON_CLICK);
-				newsButton.setName("最新资讯");
-				newsButton.setKey("news");
+				newsButton.setName("客服");
+				newsButton.setKey("news");*/
 
 				WxMenuButton luButton = new WxMenuButton();
 				luButton.setType(WxConsts.BUTTON_VIEW);
-				luButton.setName("联系我们");
+				luButton.setName("个人中心");
 				luButton.setUrl(
-						buildAuthorizationUrl("http://kgextj.natappfree.cc",
+						buildAuthorizationUrl("http://54ime2.natappfree.cc/setups",
 								WxConsts.OAUTH2_SCOPE_BASE, null));
 
 				WxMenuButton auButton = new WxMenuButton();
 				auButton.setType(WxConsts.BUTTON_VIEW);
-				auButton.setName("关于我们");
+				auButton.setName("客服");
 				auButton.setUrl(
-						buildAuthorizationUrl("http://kgextj.natappfree.cc",
+						buildAuthorizationUrl("http://54ime2.natappfree.cc/kefus",
 								WxConsts.OAUTH2_SCOPE_BASE, null));
-
-				yhButton.getSubButtons().add(newsButton);
+				
+				//yhButton.getSubButtons().add(newsButton);
 				yhButton.getSubButtons().add(luButton);
 				yhButton.getSubButtons().add(auButton);
 
@@ -75,46 +75,46 @@ public class MenuManger {
 				wxMpService.menuDelete();
 				WxMenu wxMenuNew = new WxMenu();
 				WxMenuButton businessButton = new WxMenuButton();
-				businessButton.setName("业务办理3");
+				businessButton.setName("大厅");
 				businessButton.setType(WxConsts.BUTTON_VIEW);
 				businessButton.setUrl(buildAuthorizationUrl(
-						"http://kgextj.natappfree.cc",
+						"http://54ime2.natappfree.cc",
 						WxConsts.OAUTH2_SCOPE_BASE, null));
 
 				WxMenuButton mineButton = new WxMenuButton();
 				mineButton.setType(WxConsts.BUTTON_VIEW);
-				mineButton.setName("我的订单去");
+				mineButton.setName("成员");
 				mineButton.setUrl(
-						buildAuthorizationUrl("http://kgextj.natappfree.cc",
+						buildAuthorizationUrl("http://54ime2.natappfree.cc/members",
 								WxConsts.OAUTH2_SCOPE_BASE, null));
 
 				WxMenuButton yhButton = new WxMenuButton();
-				yhButton.setName("Y就H");
+				yhButton.setName("更多");
 
 				wxMenuNew.getButtons().add(businessButton);
 				wxMenuNew.getButtons().add(mineButton);
 				wxMenuNew.getButtons().add(yhButton);
 				
-				WxMenuButton newsButton = new WxMenuButton();
+				/*WxMenuButton newsButton = new WxMenuButton();
 				newsButton.setType(WxConsts.BUTTON_CLICK);
-				newsButton.setName("最新资讯");
-				newsButton.setKey("news");
+				newsButton.setName("客服");
+				newsButton.setKey("news");*/
 
 				WxMenuButton luButton = new WxMenuButton();
 				luButton.setType(WxConsts.BUTTON_VIEW);
-				luButton.setName("联系我们");
+				luButton.setName("个人中心");
 				luButton.setUrl(
-						buildAuthorizationUrl("http://kgextj.natappfree.cc",
+						buildAuthorizationUrl("http://54ime2.natappfree.cc/setups",
 								WxConsts.OAUTH2_SCOPE_BASE, null));
 
 				WxMenuButton auButton = new WxMenuButton();
 				auButton.setType(WxConsts.BUTTON_VIEW);
-				auButton.setName("关于我们");
+				auButton.setName("客服");
 				auButton.setUrl(
-						buildAuthorizationUrl("http://kgextj.natappfree.cc",
+						buildAuthorizationUrl("http://54ime2.natappfree.cc/kefus",
 								WxConsts.OAUTH2_SCOPE_BASE, null));
 				
-				yhButton.getSubButtons().add(newsButton);
+				//yhButton.getSubButtons().add(newsButton);
 				yhButton.getSubButtons().add(luButton);
 				yhButton.getSubButtons().add(auButton);
 
@@ -150,7 +150,7 @@ public class MenuManger {
 	 */
 	public static void main(String[] args) {
 		MenuManger mm = new MenuManger();
-		String url = mm.buildAuthorizationUrl("http://kgextj.natappfree.cc",
+		String url = mm.buildAuthorizationUrl("http://54ime2.natappfree.cc",
 				WxConsts.OAUTH2_SCOPE_BASE, null);
 		System.out.println(url);
 	}

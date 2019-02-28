@@ -57,6 +57,8 @@ public class YbMainConfig extends JFinalConfig {
 	 */
 	public void configRoute(Routes me) {
 		me.add(new FrontRoutes());
+		me.add(new AdminRoutes());
+		me.add(new HomeRoutes());
 	}
 	
 	public void configEngine(Engine me) {
@@ -107,7 +109,7 @@ public class YbMainConfig extends JFinalConfig {
 		//QuartzScanner.getInstance().Quzar();
 		
 		//初始化微信菜单
-		//new MenuMangerLister().InitWechatMenu();
+		new MenuMangerLister().InitWechatMenu();
 	}
 
 }
