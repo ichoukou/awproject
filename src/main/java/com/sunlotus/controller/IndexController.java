@@ -124,4 +124,18 @@ public class IndexController extends Controller {
 	public void plays(){
 		render("/page/front/play.html");
 	}
+	
+	/**
+	 * 下注首页
+	 */
+	public void XiazhuHomes(){
+		render("/page/front/xiazhuHome.html");
+	}
+	
+	/**
+	 * 上线页面
+	 */
+	public void onlines(){
+		render("/page/front/online.html");
+	}
 }

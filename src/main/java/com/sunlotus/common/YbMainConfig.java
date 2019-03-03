@@ -36,7 +36,12 @@ public class YbMainConfig extends JFinalConfig {
 		 * 特别注意：Eclipse 之下建议的启动方式
 		 */
 		//JFinal.start("src/main/webapp", 80, "/", 5);
-		UndertowServer.create(YbMainConfig.class, "undertow.txt").start();
+		UndertowServer.create(YbMainConfig.class, "undertow.txt").configWeb(builder->{
+			
+	        // 配置 WebSocket，MyWebSocket 需使用 ServerEndpoint 注解
+	        builder.addWebSocketEndpoint("com.sunlotus.websocket.MyWebSocket");
+	        
+	    }).start();
 		/**
 		 * 特别注意：IDEA 之下建议的启动方式，仅比 eclipse 之下少了最后一个参数
 		 */
@@ -109,7 +114,7 @@ public class YbMainConfig extends JFinalConfig {
 		//QuartzScanner.getInstance().Quzar();
 		
 		//初始化微信菜单
-		new MenuMangerLister().InitWechatMenu();
+		//new MenuMangerLister().InitWechatMenu();
 	}
 
 }
