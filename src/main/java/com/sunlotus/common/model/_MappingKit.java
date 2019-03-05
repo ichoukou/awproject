@@ -19,6 +19,7 @@ public class _MappingKit {
 		arp.addMapping("opennumber_log", "id", Opend_log.class);
 		arp.addMapping("yushenumber", "id", OpenNumber.class);
 		arp.addMapping("taskconfig", "id", TaskConfig.class);
+		arp.addMapping("xiazhu_table", "id", XiazhuTable.class);
 	}
 }
 

@@ -32,42 +32,42 @@
 		</div>
 	</div>
 	<ul class="layui-col-xs11 layui-col-sm11 layui-col-md11 lui-open-num-box">
-		<li>
+		<li wits="/selfInfos">
 			<div class="lui-title-name">账号与安全</div>
 			<div class="layui-icon lui-title-icon">&#xe602;</div>
 			<div style="clear:both;"></div>
 		</li>
-		<li>
+		<li wits="/uperweimas">
 			<div class="lui-title-name">微信、支付宝二维码上传</div>
 			<div class="layui-icon lui-title-icon">&#xe602;</div>
 			<div style="clear:both;"></div>
 		</li>
-		<li>
+		<li wits="/xiajilarens">
 			<div class="lui-title-name">下级拉人</div>
 			<div class="layui-icon lui-title-icon">&#xe602;</div>
 			<div style="clear:both;"></div>
 		</li>
-		<li>
+		<li wits="/housers">
 			<div class="lui-title-name">房主信息</div>
 			<div class="layui-icon lui-title-icon">&#xe602;</div>
 			<div style="clear:both;"></div>
 		</li>
-		<li>
+		<!-- li>
 			<div class="lui-title-name">分享功能</div>
 			<div class="layui-icon lui-title-icon">&#xe602;</div>
 			<div style="clear:both;"></div>
-		</li>
-		<li>
+		</li -->
+		<li wits="/rechs">
 			<div class="lui-title-name">充值记录</div>
 			<div class="layui-icon lui-title-icon">&#xe602;</div>
 			<div style="clear:both;"></div>
 		</li>
-		<li>
+		<li wits="/refunds">
 			<div class="lui-title-name">退款记录</div>
 			<div class="layui-icon lui-title-icon">&#xe602;</div>
 			<div style="clear:both;"></div>
 		</li>
-		<li>
+		<li wits="/transs">
 			<div class="lui-title-name">交易明细</div>
 			<div class="layui-icon lui-title-icon">&#xe602;</div>
 			<div style="clear:both;"></div>
@@ -75,5 +75,12 @@
 	</ul>
 	<div class="layui-col-xs11 layui-col-sm11 layui-col-md11 lui-btn">退出登录</div>
 </div>
+<script>
+$(function(){
+	$(".lui-open-num-box>li").click(function(){
+		window.location.href=$(this).attr("wits");
+	});
+})
+</script>
 </body>
 </html>
