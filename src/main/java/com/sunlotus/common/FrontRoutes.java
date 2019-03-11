@@ -9,7 +9,7 @@ import com.sunlotus.controller.IndexController;
 public class FrontRoutes extends Routes {
 
 	public void config() {
-		//addInterceptor(new UserInterceptor());
+		addInterceptor(new UserInterceptor());
 		
 		add("/", IndexController.class);
 	}
