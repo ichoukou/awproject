@@ -20,6 +20,8 @@ public class _MappingKit {
 		arp.addMapping("yushenumber", "id", OpenNumber.class);
 		arp.addMapping("taskconfig", "id", TaskConfig.class);
 		arp.addMapping("xiazhu_table", "id", XiazhuTable.class);
+		arp.addMapping("wechat_user", "id", WechatUser.class);
 	}
+	
 }
 
