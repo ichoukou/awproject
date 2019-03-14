@@ -81,15 +81,17 @@ public class MyWebSocket {
 	}
 	
 	/**
-	 * 一对一聊天
+	 * 群发聊天
 	 * @param sessionId
 	 */
-	public void onMessageTone(String sessionId){
-		MyWebSocket item = map.get(sessionId);
-		try {
-			item.sendMessage("你好，美女！");
-		} catch (IOException e) {
-			e.printStackTrace();
+	public void onMessageTAll(){
+		for(MyWebSocket item: webSocketSet){
+			try {
+				item.sendMessage("你好！达伽马");
+			} catch (IOException e) {
+				e.printStackTrace();
+				continue;
+			}
 		}
 	}
 
@@ -99,8 +101,8 @@ public class MyWebSocket {
 	 * @throws IOException
 	 */
 	public void sendMessage(String message) throws IOException{
-		this.session.getBasicRemote().sendText(message);
-		//this.session.getAsyncRemote().sendText(message);
+		//this.session.getBasicRemote().sendText(message);
+		this.session.getAsyncRemote().sendText(message);
 	}
 
 	public static synchronized int getOnlineCount() {

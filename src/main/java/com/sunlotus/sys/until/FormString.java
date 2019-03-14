@@ -1,11 +1,6 @@
 package com.sunlotus.sys.until;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-
-import com.sunlotus.common.model.OpenNumber;
-import com.sunlotus.common.model.TaskConfig;
 
 /**
  * 格式化结果集
@@ -180,17 +175,18 @@ public class FormString {
 	}
 	
 	//补位，如果位数不足的时候用0来填上
-	public static String formNum(int nowday){
-		String strnowday = String.valueOf(nowday);
-		String zero = "";
-		if(6-strnowday.length()<=0){
-			zero = "0";
+	public static String formNum(String ss){
+		ss = ss.substring(8,ss.length());
+		int newNum = (Integer.parseInt(ss))+1;
+		String newNums = "";
+		if((newNum+"").length()==1){
+			newNums = "00"+newNum;
+		}else if((newNum+"").length()==2){
+			newNums = "0"+newNum;
 		}else{
-			for(int i=0; i<(6-strnowday.length()); i++){
-				zero+="0";
-			}
+			newNums = ""+newNum;
 		}
-		return zero+strnowday;
+		return newNums;
 	}
 	
 	//判断用户登陆验证
@@ -210,18 +206,6 @@ public class FormString {
 	
 	public String subStrTwo(String num,int star){
 		return num.substring(star, num.length());
-	}
-	
-	public static List<OpenNumber> BuilderQihao(){
-		List<OpenNumber> lo = new ArrayList<OpenNumber>();
-		TaskConfig tc = TaskConfig.dao.findById(1);
-		int nowNum = tc.getInt("nowNum");
-		for(int i=0; i<=200; i++){
-			OpenNumber ope = new OpenNumber();
-			ope.set("qihao", "2019"+FormString.formNum(nowNum+i));
-			lo.add(ope);
-		}
-		return lo;
 	}
 	
 	public static void main(String[] args) { 

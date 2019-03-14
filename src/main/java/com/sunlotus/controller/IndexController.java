@@ -1,10 +1,20 @@
 package com.sunlotus.controller;
 
 
+import java.util.List;
+
+import com.jfinal.aop.Aop;
 import com.jfinal.core.Controller;
+import com.jfinal.kit.StrKit;
+import com.sunlotus.common.model.Opend_log;
+import com.sunlotus.common.model.WechatUser;
+import com.sunlotus.common.model.XiazhuTable;
+import com.sunlotus.service.XiaZhuService;
+import com.sunlotus.websocket.MyWebSocket;
 
 public class IndexController extends Controller {
-
+	static XiaZhuService xiaZhuService = Aop.get(XiaZhuService.class);
+	
 	/**
 	 * 主页
 	 */
@@ -17,6 +27,15 @@ public class IndexController extends Controller {
 			setAttr("tc", tc.getInt("second")*1000);
 		}
 		setAttr("opendlog", opendlog);*/
+		String openId = (String) getRequest().getSession().getAttribute("openId");
+		//判断openId是否为空，为空则说明不是微信客户端来的，直接返回错误
+		if(StrKit.isBlank(openId)){
+			setAttr("usInfo", new WechatUser());
+			render("/page/front/index.html");
+			return;
+		}
+		WechatUser wech = xiaZhuService.getBalance(openId);
+		setAttr("usInfo", wech);
 		render("/page/front/index.html");
 	}
 	
@@ -108,6 +127,15 @@ public class IndexController extends Controller {
 	 * 下注查看
 	 */
 	public void betss(){
+		String openId = (String) getRequest().getSession().getAttribute("openId");
+		//判断openId是否为空，为空则说明不是微信客户端来的，直接返回错误
+		if(StrKit.isBlank(openId)){
+			setAttr("listXZ", null);
+			render("/page/front/bets.html");
+			return;
+		}
+		List<XiazhuTable> listXZ = xiaZhuService.getBatessLog(openId);
+		setAttr("listXZ", listXZ);
 		render("/page/front/bets.html");
 	}
 	
@@ -129,6 +157,8 @@ public class IndexController extends Controller {
 	 * 下注首页
 	 */
 	public void XiazhuHomes(){
+		//系统倒计时开奖完之后，调用这个方法即可把结果推送到前端
+		new MyWebSocket().onMessageTAll();
 		render("/page/front/xiazhuHome.html");
 	}
 	
@@ -136,6 +166,15 @@ public class IndexController extends Controller {
 	 * 上线页面
 	 */
 	public void onlines(){
+		String openId = (String) getRequest().getSession().getAttribute("openId");
+		//判断openId是否为空，为空则说明不是微信客户端来的，直接返回错误
+		if(StrKit.isBlank(openId)){
+			setAttr("logList", null);
+			render("/page/front/online.html");
+			return;
+		}
+		List<Opend_log> logList = xiaZhuService.getFiveList();
+		setAttr("logList", logList);
 		render("/page/front/online.html");
 	}
 }

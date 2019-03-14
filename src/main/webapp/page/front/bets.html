@@ -18,6 +18,10 @@
 .lui-open-num-box>li{overflow:hidden;border-bottom: 1px solid #eee; padding:10px 10px; line-height:25px;}
 .lui-open-num-box>li:first-child{border-top:1px solid #ddd;}
 .game-paly-type{color:#8669E8;}
+.logTable{margin-top:10px;font-size:12px;width:100%; font-family:'微软雅黑'; text-align:center;}
+.logTable th{line-height:30px;}
+.logTable td{line-height:30px;}
+.hanColr{background:#F2F2F2;}
 </style>
 </head>
 <body>
@@ -30,7 +34,45 @@
 			下注查看
 		</div>
 	</div>
+	#if(listXZ.size()==0)
 	<div class="game-name">没有更多了</div>
+	#else
+		<table class="logTable">
+			<tr>
+				<th>期号</th>
+				<th>下注号码</th>
+				<th>下注类型</th>
+				<th>下注金额</th>
+				<th>开奖状态</th>
+			</tr>
+		#for(data : listXZ)
+			<tr #if(for.index%2!=0)class="hanColr"#end>
+				<td>#(data.qihao)</td>
+				<td>#(data.number)</td>
+				<td>
+					#if(data.numType=="0")
+					一字定
+					#else if(data.numType=="1")
+					二字定
+					#else if(data.numType=="2")
+					三字定
+					#else if(data.numType=="3")
+					四字定
+					#else if(data.numType=="4")
+					二字现
+					#else if(data.numType=="5")
+					三字现
+					#else if(data.numType=="6")
+					四字现
+					#end
+				</td>
+				<td>#(data.domoney)</td>
+				<td>#if(data.STATUS=="0")<span style="color:#ff0000;">待开奖</span>#else<span style="color:#009688;">已开奖</span>#end</td>
+			</tr>
+		#end
+		</table>
+	#end
+	
 	<!-- ul class="lui-open-num-box">
 		<li>
 			<div class="game-paly-type">一字定</div>

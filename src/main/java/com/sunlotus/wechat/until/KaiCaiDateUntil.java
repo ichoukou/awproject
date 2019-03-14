@@ -14,16 +14,15 @@ public class KaiCaiDateUntil {
 	//private static final String date = "2018-02-18";
 	
 	public static void main(String[] args) {
-		String url = "http://f.apiplus.net/cqssc.json?rows=1";
+		String url = "http://f.apiplus.net/cqssc.json?rows=100";
 		/*url += "token="+token+"&";
 		url += "code="+code+"&";
 		url += "rows="+rows+"&";
-		url += "format="+format;*/
+		url += "format="+format;
 		String urlAll = new StringBuffer(url).toString();
 		String charset = "UTF-8";
 		String jsonResult = getHttpDate(urlAll, charset);// 得到JSON字符串
-		System.out.println(jsonResult);
-
+		System.out.println(jsonResult);*/
 	}
 
 	/**

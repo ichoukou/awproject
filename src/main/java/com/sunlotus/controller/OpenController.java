@@ -3,7 +3,6 @@ package com.sunlotus.controller;
 import com.jfinal.core.Controller;
 import com.sunlotus.common.model.OpenNumber;
 import com.sunlotus.service.OpenService;
-import com.sunlotus.sys.until.FormString;
 
 public class OpenController extends Controller {
 
@@ -35,8 +34,8 @@ public class OpenController extends Controller {
 	
 	/**
 	 * 加载期号
-	 */
+	
 	public void loadQh(){
 		renderJson(FormString.BuilderQihao());
-	}
+	} */
 }
