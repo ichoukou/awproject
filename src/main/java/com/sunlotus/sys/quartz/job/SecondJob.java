@@ -10,19 +10,26 @@ public class SecondJob implements Job{
 
 	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
-		TaskConfig qco = TaskConfig.dao.findById(1);
-		/**
-		 * 如果小于0或等于0，就说明是读秒完了，应该到开奖的时间了。
-		 * 又有一种情况是：距离不够十分钟就开奖了，需要秒定时器等完开完一期之后再读秒，这种情况一般是结束开奖时又开始恢复开奖回来才出现这种情况
-		 */
-		if(qco.getInt("second")>=1){
-			qco.set("second", qco.getInt("second")-1);//倒计时1秒直到为0
-	    	qco.update();
-		}else if(qco.getInt("second")==0){//到0的时候，需要恢复成10分钟回来 
-			qco.set("second", 300);//倒计时1秒直到为0
-	    	qco.update();
+		System.out.println("读秒中...");
+		TaskConfig st = TaskConfig.dao.findById(1);
+		System.out.println(st);
+		if(st.getInt("second")>0){//这个大于0才会倒数，如果不大于0就不倒数
+			if(st.getInt("second")<=st.getInt("closetime")){
+				if(st.getStr("fenpan").equals("0")){
+					st.set("close", "2");
+				}else{
+					st.set("close", "0");
+				}
+			}else{
+				if(st.getStr("fenpan").equals("0")){
+					st.set("close", "2");
+				}else{
+					st.set("close", "1");
+				}
+			}
+			st.set("second", st.getInt("second")-1);
+			st.update();
 		}
-		
 	}
 	
 }

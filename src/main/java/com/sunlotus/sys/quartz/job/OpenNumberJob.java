@@ -1,47 +1,84 @@
 package com.sunlotus.sys.quartz.job;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
 
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.sunlotus.common.model.OpenNumber;
 import com.sunlotus.common.model.Opend_log;
 import com.sunlotus.common.model.TaskConfig;
-import com.sunlotus.sys.until.FormString;
+import com.sunlotus.common.model.WechatUser;
+import com.sunlotus.common.model.XiazhuTable;
+import com.sunlotus.wechat.until.KaiCaiDateUntil;
 
 public class OpenNumberJob implements Job{
-	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	/*private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	private static final String token = "t10e9c565ded1e473k";
+	private static final String code = "bjpk10";
+	private static final String rows = "1";
+	private static final String format = "json";*/
 	
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-		String igstr = "";
-		//更新这个字段，然后让秒定时器读秒
-		TaskConfig qco = TaskConfig.dao.findById(1);
-    	qco.set("second", 300);//恢复300秒：5分钟
-    	//igstr = FormString.formNum(qco.getInt("nowNum"));
-    	qco.set("nowNum", qco.getInt("nowNum")+1);
-    	qco.update();
-    	
-    	//开始从开奖池里面拿号码
-    	Opend_log ol = new Opend_log();
-    	ol.set("create_qihao", "2019"+igstr);
-		OpenNumber onum = OpenNumber.dao.findFirst("SELECT * FROM yushenumber WHERE qihao='next' ORDER BY creatime ASC");
-		if(onum!=null){//不为空拿开奖池里面的号码
-			ol.set("create_open", onum.getStr("openumber"));
-			onum.delete();//删除开奖池里面的已开过的号码
-		}else{//为空就再拿期号匹配，如果期号还没有匹配就随机开奖
-			OpenNumber onumbyqh = OpenNumber.dao.findFirst("SELECT * FROM yushenumber WHERE qihao='2019"+igstr+"'");
-			if(onumbyqh!=null){
-				ol.set("create_open", onumbyqh.getStr("openumber"));
-				onumbyqh.delete();//删除开奖池里面的已开过的号码
-			}else{
-				ol.set("create_open", new FormString().getThreeNum());
+		System.out.println("这个定时器需要8秒执行一次，用于获取接口数据");
+		/*String url = "http://ho.apiplus.net/newly.do?";
+		url += "token="+token+"&";
+		url += "code="+code+"&";
+		url += "rows="+rows+"&";
+		url += "format="+format;*/
+		String url = "http://f.apiplus.net/cqssc.json?rows=1";
+		String urlAll = new StringBuffer(url).toString();
+		String charset = "UTF-8";
+		String jsonResult = KaiCaiDateUntil.getHttpDate(urlAll, charset);
+		JSONObject jsonObject = JSONObject.parseObject(jsonResult);
+		String dataStr = jsonObject.getString("data");
+		JSONArray jsonArray = JSONArray.parseArray(dataStr);
+		for(int i=0; i<jsonArray.size(); i++){
+			JSONObject obj = jsonArray.getJSONObject(i);
+			Opend_log on = Opend_log.dao.findFirst("SELECT id FROM opennumber_log WHERE create_qihao = '"+obj.getString("expect")+"'");
+			if(null==on){ //如果这个为空，就说明还没开过的号码
+				Opend_log openNum = new Opend_log();
+				openNum.set("create_qihao", obj.getString("expect"));
+				openNum.set("create_open", obj.getString("opencode"));
+				openNum.set("create_time", obj.getString("opentime"));
+				boolean yessave = openNum.save();
+				if(yessave){
+					TaskConfig st = TaskConfig.dao.findById("1");
+					st.set("second", 1200);//重新更新秒数
+					st.update();
+					
+					//开始统计中奖号码
+					//IsWin(obj.getString("expect"),obj.getString("opencode"));
+				}
 			}
 		}
-		ol.set("create_time", sdf.format(new Date()));
-		ol.save();
+	}
+	
+	//验证下注号码中是否有中奖
+	public static boolean IsWin(String qiNum,String openumber){
+		List<XiazhuTable> blog = XiazhuTable.dao.find("SELECT * FROM xiazhu_table WHERE fd_qishu = '"+qiNum+"'");
+		String openum[] = openumber.split(",");
+		for(XiazhuTable bd : blog){
+			WechatUser uif = WechatUser.dao.findById(bd.getStr("openId"));
+			int s = Integer.parseInt(bd.getStr("fd_type"));
+			String sd = openum[s-1];
+			String sds = bd.getStr("fd_num");
+			if(sd.equals(sds)){
+				bd.set("fd_iswin", "1");//赢
+				uif.set("fd_money", uif.getDouble("fd_money")+(bd.getDouble("fd_tatol")*9.7)); //倍率
+			}else{
+				bd.set("fd_iswin", "0");//输
+				//uif.set("fd_money", uif.getDouble("fd_money")-bd.getDouble("fd_tatol")); //输没有倍率
+			}
+			if(bd.update()){
+				uif.update();//更新用户余额
+			}
+		}
+		return true;
 	}
 
 }

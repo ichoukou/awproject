@@ -7,6 +7,7 @@ import com.jfinal.aop.Aop;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.StrKit;
 import com.sunlotus.common.model.Opend_log;
+import com.sunlotus.common.model.TaskConfig;
 import com.sunlotus.common.model.WechatUser;
 import com.sunlotus.common.model.XiazhuTable;
 import com.sunlotus.service.XiaZhuService;
@@ -20,7 +21,7 @@ public class IndexController extends Controller {
 	 */
 	public void index(){
 		/*List<Opend_log> opendlog = Opend_log.dao.find("SELECT * FROM opennumber_log ORDER BY create_time DESC LIMIT 200");
-		TaskConfig tc = TaskConfig.dao.findById(1);
+		
 		if(tc.getInt("second")==-1){
 			setAttr("tc", -1);
 		}else{
@@ -158,7 +159,11 @@ public class IndexController extends Controller {
 	 */
 	public void XiazhuHomes(){
 		//系统倒计时开奖完之后，调用这个方法即可把结果推送到前端
-		new MyWebSocket().onMessageTAll();
+		//new MyWebSocket().onMessageTAll();
+		TaskConfig tc = TaskConfig.dao.findById(1);
+		setAttr("sec",tc.getInt("second")*1000);
+		setAttr("close",tc.getStr("close"));
+		setAttr("closetime",tc.getInt("closetime")*1000);
 		render("/page/front/xiazhuHome.html");
 	}
 	

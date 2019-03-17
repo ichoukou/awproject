@@ -76,7 +76,8 @@ body {min-width: 320px;max-width: 640px;margin: 0 auto;color: #333;padding: 0;fo
 				<span class="fmius">13</span>
 				<span>分</span>
 				<span class="fsecd">45</span>
-				<span>秒</span>
+				<span>秒</span>&nbsp;
+				<span class="opening"></span>
 			</div>
 		</div>
 	</div>
@@ -545,7 +546,69 @@ $(function() {
 			swiper1.slideTo(n, 500, false);
 		}
 	});
+	
+	sendemail(#(sec));
 });
+
+function sendemail(countdown){
+	if(countdown<=0){
+		$(".fmius").text("--");
+		$(".fsecd").text("--");
+		if(#(close)=="2"||#(close)==2){
+			$(".opening").text("封盘");
+		}else{
+			$(".opening").text("开奖中");
+		}
+		var timer2=window.setTimeout(function(){
+    		location.reload();
+			window.clearTimeout(timer2);
+		},10000);
+	}else{
+		settime(countdown);
+	}
+}
+
+function settime(countdown) {
+	console.log("倒计时："+countdown);
+    if(countdown <= 0){ //倒计时完之后刷新整个页面
+    	$(".fmius").text("--");
+		$(".fsecd").text("--");
+		if(#(close)=="2"||#(close)==2){
+			$(".opening").text("封盘");
+		}else{
+			$(".opening").text("开奖中");
+		}
+    	var timer2=window.setTimeout(function(){
+    		location.reload();
+			window.clearTimeout(timer2);
+		},10000);
+    }else{  //否则倒计时
+    	if(countdown==#(closetime)){
+    		var intime = setInterval(function(){
+    			location.reload();
+    			window.clearInterval(intime);
+    		},1000);
+    	}
+    	var mmss = fromTime(countdown);
+    	countdown = parseInt(countdown)-1000;
+    	var Time = mmss.split(",");
+    	$(".fmius").text((Time[0]<10?"0"+Time[0]:Time[0]));
+		$(".fsecd").text((Time[1]<10?"0"+Time[1]:Time[1]));
+		var timer3 = window.setTimeout(function(){
+			settime(countdown);
+		},1000)
+    }
+}
+
+//把毫秒化成分和秒
+function fromTime(timeNum){
+	var mm = "";
+	var ss = "";
+	var allSS = parseInt(timeNum)/1000;
+	mm = Math.floor(allSS/60);
+	ss = allSS%60;
+	return mm+","+ss;
+}
 </script>
 </body>
 </html>

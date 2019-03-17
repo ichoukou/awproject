@@ -12,6 +12,7 @@ import com.jfinal.plugin.redis.RedisPlugin;
 import com.jfinal.server.undertow.UndertowServer;
 import com.jfinal.template.Engine;
 import com.sunlotus.common.model._MappingKit;
+import com.sunlotus.sys.quartz.scan.QuartzScanner;
 import com.sunlotus.sys.until.Config;
 import com.sunlotus.wechat.listen.MenuMangerLister;
 
@@ -106,7 +107,7 @@ public class YbMainConfig extends JFinalConfig {
 	public void configHandler(Handlers me) {
 		
 	}
-	
+
 	/**
 	 * 启动项目时执行
 	 */
@@ -115,6 +116,8 @@ public class YbMainConfig extends JFinalConfig {
 		
 		//初始化微信菜单
 		//new MenuMangerLister().InitWechatMenu();
+		
+		QuartzScanner.getInstance().Quzar();
 	}
 
 }

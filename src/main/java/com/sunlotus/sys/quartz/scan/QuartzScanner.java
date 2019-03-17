@@ -23,25 +23,28 @@ public class QuartzScanner {
 	public void Quzar(){
         try {
         	//如果是直接断开服务器，而不是停止开奖器之后再停服务器，所以我们需要在开启服务器的时候更新倒计时
-        	TaskConfig qco = TaskConfig.dao.findById(1);
+        	//TaskConfig qco = TaskConfig.dao.findById(1);
         	
 			scheduler = StdSchedulerFactory.getDefaultScheduler();
 			//加入调度任务1
 			JobDetail OpenJob = newJob(OpenNumberJob.class).withIdentity("openjob", "opengroup").build();
-			Trigger OpenTrigger = newTrigger().withIdentity("openjob", "opengroup").withSchedule(CronScheduleBuilder.cronSchedule("0 0/5 * * * ?").withMisfireHandlingInstructionDoNothing()).build();
+			Trigger OpenTrigger = newTrigger().withIdentity("openjob", "opengroup").withSchedule(CronScheduleBuilder.cronSchedule("0/8 * * * * ?").withMisfireHandlingInstructionDoNothing()).build();
 			
 			//加入调度任务2
 			JobDetail SecondJob = newJob(SecondJob.class).withIdentity("secondjob", "secondgroup").build();
 			Trigger SecondTrigger = newTrigger().withIdentity("secondjob", "secondgroup").withSchedule(CronScheduleBuilder.cronSchedule("0/1 * * * * ?").withMisfireHandlingInstructionDoNothing()).build();
 			
-			if("NORMAL".equals(qco.getStr("status"))){//如果等于开启状态，则加入
+			scheduler.scheduleJob(OpenJob, OpenTrigger);
+			scheduler.scheduleJob(SecondJob, SecondTrigger);
+			
+			/*if("NORMAL".equals(qco.getStr("status"))){//如果等于开启状态，则加入
 				scheduler.scheduleJob(OpenJob, OpenTrigger);
 				scheduler.scheduleJob(SecondJob, SecondTrigger);
 				qco.set("second", 300);//正常的话就设置600秒，让秒针读取
 			}else{
 				qco.set("second", -1);//设置这个是不让秒定时器读秒，除非执行开奖之后，秒针才开始重新读
 			}
-        	qco.update();
+        	qco.update();*/
             scheduler.start();
 		} catch (SchedulerException e) {
 			e.printStackTrace();
@@ -85,7 +88,7 @@ public class QuartzScanner {
 
 			//加入调度任务1
 			JobDetail OpenJob = newJob(OpenNumberJob.class).withIdentity("openjob", "opengroup").build();
-			Trigger OpenTrigger = newTrigger().withIdentity("openjob", "opengroup").withSchedule(CronScheduleBuilder.cronSchedule("0 0/5 * * * ?").withMisfireHandlingInstructionDoNothing()).build();
+			Trigger OpenTrigger = newTrigger().withIdentity("openjob", "opengroup").withSchedule(CronScheduleBuilder.cronSchedule("0/8 * * * * ?").withMisfireHandlingInstructionDoNothing()).build();
 			
 			//加入调度任务2
 			JobDetail SecondJob = newJob(SecondJob.class).withIdentity("secondjob", "secondgroup").build();

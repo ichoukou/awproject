@@ -27,14 +27,14 @@ public class MenuManger {
 				businessButton.setName("大厅");
 				businessButton.setType(WxConsts.BUTTON_VIEW);
 				businessButton.setUrl(buildAuthorizationUrl(
-						"http://5rfxsi.natappfree.cc",
+						"http://krtj58.natappfree.cc",
 						WxConsts.OAUTH2_SCOPE_BASE, null));
 
 				WxMenuButton mineButton = new WxMenuButton();
 				mineButton.setType(WxConsts.BUTTON_VIEW);
 				mineButton.setName("成员");
 				mineButton.setUrl(
-						buildAuthorizationUrl("http://5rfxsi.natappfree.cc/members",
+						buildAuthorizationUrl("http://krtj58.natappfree.cc/members",
 								WxConsts.OAUTH2_SCOPE_BASE, null));
 
 				WxMenuButton yhButton = new WxMenuButton();
@@ -53,14 +53,14 @@ public class MenuManger {
 				luButton.setType(WxConsts.BUTTON_VIEW);
 				luButton.setName("个人中心");
 				luButton.setUrl(
-						buildAuthorizationUrl("http://5rfxsi.natappfree.cc/setups",
+						buildAuthorizationUrl("http://krtj58.natappfree.cc/setups",
 								WxConsts.OAUTH2_SCOPE_BASE, null));
 
 				WxMenuButton auButton = new WxMenuButton();
 				auButton.setType(WxConsts.BUTTON_VIEW);
 				auButton.setName("客服");
 				auButton.setUrl(
-						buildAuthorizationUrl("http://5rfxsi.natappfree.cc/kefus",
+						buildAuthorizationUrl("http://krtj58.natappfree.cc/kefus",
 								WxConsts.OAUTH2_SCOPE_BASE, null));
 				
 				//yhButton.getSubButtons().add(newsButton);
@@ -78,14 +78,14 @@ public class MenuManger {
 				businessButton.setName("大厅");
 				businessButton.setType(WxConsts.BUTTON_VIEW);
 				businessButton.setUrl(buildAuthorizationUrl(
-						"http://5rfxsi.natappfree.cc",
+						"http://krtj58.natappfree.cc",
 						WxConsts.OAUTH2_SCOPE_BASE, null));
 
 				WxMenuButton mineButton = new WxMenuButton();
 				mineButton.setType(WxConsts.BUTTON_VIEW);
 				mineButton.setName("成员");
 				mineButton.setUrl(
-						buildAuthorizationUrl("http://5rfxsi.natappfree.cc/members",
+						buildAuthorizationUrl("http://krtj58.natappfree.cc/members",
 								WxConsts.OAUTH2_SCOPE_BASE, null));
 
 				WxMenuButton yhButton = new WxMenuButton();
@@ -104,14 +104,14 @@ public class MenuManger {
 				luButton.setType(WxConsts.BUTTON_VIEW);
 				luButton.setName("个人中心");
 				luButton.setUrl(
-						buildAuthorizationUrl("http://5rfxsi.natappfree.cc/setups",
+						buildAuthorizationUrl("http://krtj58.natappfree.cc/setups",
 								WxConsts.OAUTH2_SCOPE_BASE, null));
 
 				WxMenuButton auButton = new WxMenuButton();
 				auButton.setType(WxConsts.BUTTON_VIEW);
 				auButton.setName("客服");
 				auButton.setUrl(
-						buildAuthorizationUrl("http://5rfxsi.natappfree.cc/kefus",
+						buildAuthorizationUrl("http://krtj58.natappfree.cc/kefus",
 								WxConsts.OAUTH2_SCOPE_BASE, null));
 				
 				//yhButton.getSubButtons().add(newsButton);
@@ -150,7 +150,7 @@ public class MenuManger {
 	 */
 	public static void main(String[] args) {
 		MenuManger mm = new MenuManger();
-		String url = mm.buildAuthorizationUrl("http://5rfxsi.natappfree.cc",
+		String url = mm.buildAuthorizationUrl("http://krtj58.natappfree.cc",
 				WxConsts.OAUTH2_SCOPE_BASE, null);
 		System.out.println(url);
 	}

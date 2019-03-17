@@ -14,7 +14,7 @@ public class KaiCaiDateUntil {
 	//private static final String date = "2018-02-18";
 	
 	public static void main(String[] args) {
-		String url = "http://f.apiplus.net/cqssc.json?rows=100";
+		String url = "http://f.apiplus.net/cqssc.json?rows=1";
 		/*url += "token="+token+"&";
 		url += "code="+code+"&";
 		url += "rows="+rows+"&";
