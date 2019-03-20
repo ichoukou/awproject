@@ -18,7 +18,8 @@
 .lui-title{height: 39px;line-height: 39px;}
 .open_title_info{text-align:center;overflow: hidden; background: #32510F; color: #fff; padding: 10px 0px;}
 .opentitle{font-size:12px;}
-.openbool>li{display:inline-block;}
+.openbool{margin-top:10px;}
+.openbool>li{display:inline-block; background:#D74B28; width:25px; height:25px; line-height:25px; text-align:center; border-radius:15px;}
 
 body {min-width: 320px;max-width: 640px;margin: 0 auto;color: #333;padding: 0;font-family: "Microsoft Yahei";text-align: center;}
 .container {/*width: 100%;*/ border: 1px solid #ccc; font-size:12px;}
@@ -61,21 +62,21 @@ body {min-width: 320px;max-width: 640px;margin: 0 auto;color: #333;padding: 0;fo
 	</div>
 	<div  class="open_title_info">
 		<div class="layui-col-xs6 layui-col-sm6 layui-col-md6" style="border-right:1px solid #fff;">
-			<div class="opentitle">第20190302037期开奖</div>
+			<div class="opentitle">第#(openLog.create_qihao)期开奖</div>
 			<ul class="openbool">
-				<li>2</li>
-				<li>4</li>
-				<li>5</li>
-				<li>1</li>
-				<li>0</li>
+				<li>#(openLog.create_open.split(",")[0])</li>
+				<li>#(openLog.create_open.split(",")[1])</li>
+				<li>#(openLog.create_open.split(",")[2])</li>
+				<li>#(openLog.create_open.split(",")[3])</li>
+				<li>#(openLog.create_open.split(",")[4])</li>
 			</ul>
 		</div>
 		<div class="layui-col-xs6 layui-col-sm6 layui-col-md6">
-			<div class="opentitle">第20190302038期开奖</div>
-			<div>
-				<span class="fmius">13</span>
+			<div class="opentitle">第#(qihao)期开奖</div>
+			<div style="margin-top:12px;">
+				<span class="fmius">--</span>
 				<span>分</span>
-				<span class="fsecd">45</span>
+				<span class="fsecd">--</span>
 				<span>秒</span>&nbsp;
 				<span class="opening"></span>
 			</div>
@@ -569,7 +570,6 @@ function sendemail(countdown){
 }
 
 function settime(countdown) {
-	console.log("倒计时："+countdown);
     if(countdown <= 0){ //倒计时完之后刷新整个页面
     	$(".fmius").text("--");
 		$(".fsecd").text("--");

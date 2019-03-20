@@ -30,7 +30,7 @@ public class OpenNumberJob implements Job{
 		url += "code="+code+"&";
 		url += "rows="+rows+"&";
 		url += "format="+format;*/
-		String url = "http://f.apiplus.net/cqssc.json?rows=1";
+		String url = "http://t.apiplus.net/newly.do?code=cqssc&format=json&rows=1";
 		String urlAll = new StringBuffer(url).toString();
 		String charset = "UTF-8";
 		String jsonResult = KaiCaiDateUntil.getHttpDate(urlAll, charset);

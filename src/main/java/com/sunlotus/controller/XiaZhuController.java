@@ -40,7 +40,7 @@ public class XiaZhuController extends Controller{
 		float loadBalan = (weUs.getFloat("balance"))-(xzt.getFloat("domoney"));
 		weUs.set("balance", loadBalan);
 		weUs.update();//更新余额
-		String qihao = xiaZhuService.getNewQihao();
+		String qihao = xiaZhuService.getNewQihao().getStr("create_qihao");
 		xzt.set("qihao", qihaoDate.format(new Date())+FormString.formNum(qihao));
 		xzt.set("openId", openId);
 		xzt.set("createTime", sf.format(new Date()));

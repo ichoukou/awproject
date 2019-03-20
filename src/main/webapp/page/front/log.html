@@ -33,19 +33,21 @@
 		</div>
 	</div>
 	<ul class="lui-open-num-box">
+		#for(data : logList)
 		<li>
 			<div class="lui-baseInfo">
-				<div class="layui-col-xs6 layui-col-sm6 layui-col-md6 lui-font-left">20190227075</div>
-				<div class="layui-col-xs6 layui-col-sm6 layui-col-md6 lui-font-right">2019-02-27 22:10:00</div>
+				<div class="layui-col-xs6 layui-col-sm6 layui-col-md6 lui-font-left">#(data.create_qihao)</div>
+				<div class="layui-col-xs6 layui-col-sm6 layui-col-md6 lui-font-right">#(data.create_time)</div>
 			</div>
 			<ul class="lui-open-bool">
-				<li>1</li>
-				<li>2</li>
-				<li>3</li>
-				<li>4</li>
-				<li>5</li>
+				<li>#(data.create_open.split(",")[0])</li>
+				<li>#(data.create_open.split(",")[1])</li>
+				<li>#(data.create_open.split(",")[2])</li>
+				<li>#(data.create_open.split(",")[3])</li>
+				<li style="background:#0090E3;">#(data.create_open.split(",")[4])</li>
 			</ul>
 		</li>
+		#end
 	</ul>
 </div>
 </body>
