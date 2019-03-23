@@ -27,7 +27,7 @@ public class MenuManger {
 				businessButton.setName("大厅");
 				businessButton.setType(WxConsts.BUTTON_VIEW);
 				businessButton.setUrl(buildAuthorizationUrl(
-						"http://lxq.nat100.top",
+						"http://lxq.nat100.top/homes",
 						WxConsts.OAUTH2_SCOPE_BASE, null));
 
 				WxMenuButton mineButton = new WxMenuButton();
@@ -78,7 +78,7 @@ public class MenuManger {
 				businessButton.setName("大厅");
 				businessButton.setType(WxConsts.BUTTON_VIEW);
 				businessButton.setUrl(buildAuthorizationUrl(
-						"http://lxq.nat100.top",
+						"http://lxq.nat100.top/homes",
 						WxConsts.OAUTH2_SCOPE_BASE, null));
 
 				WxMenuButton mineButton = new WxMenuButton();

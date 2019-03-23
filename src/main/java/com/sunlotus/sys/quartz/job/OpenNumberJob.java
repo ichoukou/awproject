@@ -13,7 +13,7 @@ import com.sunlotus.common.model.Opend_log;
 import com.sunlotus.common.model.TaskConfig;
 import com.sunlotus.common.model.WechatUser;
 import com.sunlotus.common.model.XiazhuTable;
-import com.sunlotus.wechat.until.KaiCaiDateUntil;
+import com.sunlotus.wechat.until.HttpRequestUntil;
 
 public class OpenNumberJob implements Job{
 	/*private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -24,7 +24,7 @@ public class OpenNumberJob implements Job{
 	
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-		System.out.println("这个定时器需要8秒执行一次，用于获取接口数据");
+		//System.out.println("这个定时器需要8秒执行一次，用于获取接口数据");
 		/*String url = "http://ho.apiplus.net/newly.do?";
 		url += "token="+token+"&";
 		url += "code="+code+"&";
@@ -33,7 +33,7 @@ public class OpenNumberJob implements Job{
 		String url = "http://t.apiplus.net/newly.do?code=cqssc&format=json&rows=1";
 		String urlAll = new StringBuffer(url).toString();
 		String charset = "UTF-8";
-		String jsonResult = KaiCaiDateUntil.getHttpDate(urlAll, charset);
+		String jsonResult = HttpRequestUntil.getHttpDate(urlAll, charset);
 		JSONObject jsonObject = JSONObject.parseObject(jsonResult);
 		String dataStr = jsonObject.getString("data");
 		JSONArray jsonArray = JSONArray.parseArray(dataStr);

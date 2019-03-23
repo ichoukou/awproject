@@ -23,7 +23,7 @@ public class IndexController extends Controller {
 	/**
 	 * 主页
 	 */
-	public void index(){
+	public void homes(){
 		/*List<Opend_log> opendlog = Opend_log.dao.find("SELECT * FROM opennumber_log ORDER BY create_time DESC LIMIT 200");
 		
 		if(tc.getInt("second")==-1){
