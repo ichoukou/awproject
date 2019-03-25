@@ -5,15 +5,20 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jfinal.aop.Aop;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.StrKit;
+import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.Record;
 import com.sunlotus.common.model.Opend_log;
 import com.sunlotus.common.model.TaskConfig;
 import com.sunlotus.common.model.WechatUser;
 import com.sunlotus.common.model.XiazhuTable;
 import com.sunlotus.service.XiaZhuService;
+import com.sunlotus.sys.until.BuildNumber;
 import com.sunlotus.sys.until.FormString;
 
 public class IndexController extends Controller {
@@ -213,4 +218,55 @@ public class IndexController extends Controller {
 		setAttr("logList", logl);
 		render("/page/front/online.html");
 	}
+	
+	/**
+	 * 添加四字定存备份
+	 */
+	public void si(){
+		/*String getStr = BuildNumber.BuileNumberFunc();
+		System.out.println(getStr);
+		JSONObject jsono = JSONObject.parseObject(getStr);
+		Set<String> ses = jsono.keySet();
+		List<Record> recl = new ArrayList<Record>();
+		for(String s : ses){
+			Record re = new Record();
+			re.set("number", s);
+			recl.add(re);
+		}
+		try {
+			Db.batchSave("n_sanzixian", recl, 1000);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}*/
+		JSONObject jsob = new JSONObject();
+		jsob.put("msg", true);
+		renderJson(jsob);
+	}
+	
+	/**
+	 * 添加三字定存备份
+	 */
+	public void san(){
+		/*List<Record> lrec = Db.find("SELECT number FROM n_siziding ORDER BY number DESC");
+		String getStr = BuildNumber.SanZiDingFunc(lrec);
+		JSONObject jsono = JSONObject.parseObject(getStr);
+		Set<String> ses = jsono.keySet();
+		List<Record> recl = new ArrayList<Record>();
+		for(String s : ses){
+			Record re = new Record();
+			re.set("number", s);
+			recl.add(re);
+		}
+		try {
+			Db.batchSave("n_yiziding", recl, 1000);
+			//System.out.println(recl);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}*/
+		
+		JSONObject jsob = new JSONObject();
+		jsob.put("msg", true);
+		renderJson(jsob);
+	}
+	
 }

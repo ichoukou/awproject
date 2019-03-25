@@ -39,17 +39,13 @@ public class UserInterceptor implements Interceptor{
 		HttpSession session = request.getSession();
 		String newCode = request.getParameter("code");
 		Object obj = session.getAttribute("openId");
-		System.out.println("请求地址："+repUrl);
 		if(repUrl.indexOf("/homes")>=0||repUrl.indexOf("/members")>=0||repUrl.indexOf("/setups")>=0|repUrl.indexOf("/kefus")>=0){
-			System.out.println(1);
 			if (obj == null) {
-				System.out.println(2);
 				try {
 					String openId = wxMpService.getInstance().getWxUser(newCode);
 					session.setAttribute("openId", openId);
 					Record rec = wechatUserService.getUserById(openId);
 					if(rec==null){
-						System.out.println(3);
 						/**
 						 * 如果等于空则需要根据openId请求微信接口拿用户数据
 						 * 1、需要获取access_token
@@ -81,7 +77,6 @@ public class UserInterceptor implements Interceptor{
 							ai.getController().renderError(404);
 						}
 					}else{
-						System.out.println(4);
 						session.setAttribute("headimgurl", rec.getStr("head_img"));
 						session.setAttribute("nickname", rec.getStr("nicheng"));
 					}
