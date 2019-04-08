@@ -170,7 +170,7 @@ public class BuildNumber {
 				}
 			}
 		}
-		
+		//lsj = [625, 652, 265, 256, 562, 526]
 		List<String> norepNum = new ArrayList<String>();
 		for(String str : s){
 			boolean isp = true;
@@ -185,10 +185,10 @@ public class BuildNumber {
 			}
 		}
 		
-		//System.out.println(norepNum+"/"+reNum);
+		//norepNum = [6, 2, 5]
 		List<String> lsjs = new ArrayList<String>();
-		for(int i=0; i<3; i++){
-			for(int j=0; j<3; j++){
+		for(int i=0; i<4; i++){
+			for(int j=0; j<4; j++){
 				boolean d = false;
 				String buNum = "";
 				if(!s[i].equals(s[j])){
@@ -214,6 +214,7 @@ public class BuildNumber {
 		}
 		
 		//System.out.println(lsjs);
+		//lsjs = [262, 622, 262, 622, 226, 262, 226, 262]
 		//去重 lsjs
 		List<String> newLsjs = new ArrayList<String>();
 		for(int i=0; i<lsjs.size(); i++){
@@ -234,6 +235,66 @@ public class BuildNumber {
 			lsj.add(se);
 		}
 		return lsj;
+	}
+	
+	/**
+	 * 获取不同的组合（三字现）（有两个数字重复）
+	 * @param initNum
+	 * @param reNum
+	 * @return
+	 */
+	public static List<String> getNumThreeMuch(String initNum, String reNum){
+		String[] s = initNum.split(",");
+		List<String> d = new ArrayList<String>();
+		List<String> lastr = new ArrayList<String>();
+		for(String sch : s){
+			boolean isexist = false;
+			for(String dch : d){
+				if(sch.equals(dch)){
+					isexist = true;
+					break;
+				}
+			}
+			if(!isexist){
+				d.add(sch);
+			}
+		}
+		lastr.add(d.get(0)+d.get(1)+reNum);
+		lastr.add(reNum+d.get(0)+d.get(1));
+		lastr.add(reNum+d.get(1)+d.get(0));
+		lastr.add(reNum+reNum+reNum);
+		return lastr;
+	}
+	
+	/**
+	 * 四字现
+	 */
+	public static List<String> getNumFourMuch(String initNum){
+		String[] s = initNum.split(",");
+		List<String> lastr = new ArrayList<String>();
+		for(int i=0; i<4; i++){
+			for(int j=0; j<4; j++){
+				for(int k=0; k<4; k++){
+					for(int d=0; d<4; d++){
+						boolean isExist = false;
+						String buNum = "";
+						if(!s[i].equals(s[j])&&!s[i].equals(s[k])&&!s[i].equals(s[d])&&!s[j].equals(s[k])&&!s[j].equals(s[d])&&!s[k].equals(s[d])){
+							buNum = s[i]+s[j]+s[k]+s[d];
+						}
+						for(String ls : lastr){
+							if(ls.equals(buNum)){
+								isExist = true;
+								break;
+							}
+						}
+						if(!isExist&&!buNum.equals("")){
+							lastr.add(buNum);
+						}
+					}
+				}
+			}
+		}
+		return lastr;
 	}
 	
 	
@@ -277,21 +338,51 @@ public class BuildNumber {
 		return lst;
 	}
 	
+	/**
+	 * 添加重复的（三字现）
+	 * @param opNum
+	 * @return
+	 */
 	public static List<String> GetSanZiXian(String opNum){
 		List<String> lst = new ArrayList<String>();
 		String nos = opNum.replaceAll(",", "");
 		List<String> lstr = checkDifferentNot(nos);
 		if(lstr.size()==0){
-			lst = getNumMuch(opNum); //没有重复的【已解决】
+			lst = getNumMuch(opNum);
 		}
 		if(lstr.size()==1){
-			lst = getNumMuch(opNum, lstr.get(0)); //有一个数重复的【已解决】
+			lst = getNumMuch(opNum, lstr.get(0));
 		}
 		if(lstr.size()==2){
-			System.out.println(2);
+			lst = getNumThreeMuch(opNum, lstr.get(0));
 		}
 		if(lstr.size()==3){
+			String[] sr = opNum.split(",");
+			lst.add(sr[0]+sr[0]+sr[0]);
+		}
+		return lst;
+	}
+	
+	/**
+	 * 添加重复的（四字现）
+	 * @param opNum
+	 * @return
+	 */
+	public static List<String> GetSiZiXian(String opNum){
+		List<String> lst = new ArrayList<String>();
+		String nos = opNum.replaceAll(",", "");
+		List<String> lstr = checkDifferentNot(nos);
+		if(lstr.size()==0){
+			lst = getNumFourMuch(opNum); //没有重复的【已解决】
+		}
+		if(lstr.size()==1){
+			System.out.println(2);
+		}
+		if(lstr.size()==2){
 			System.out.println(3);
+		}
+		if(lstr.size()==3){
+			System.out.println(4);
 		}
 		return lst;
 	}
@@ -304,9 +395,8 @@ public class BuildNumber {
 		//二字现全部出现中奖的号码
 		//System.out.println(GetErZiXian("0,4,6,2"));
 		//三字现全部出现中奖的号码
-		System.out.println(GetSanZiXian("6,5,2,5"));
+		System.out.println(GetSiZiXian("1,2,3,4"));
 		/**
-		 *556 655 552 255 565 525 
 		 * 
 		 * 其实吧在茫茫人海中能遇到一个自己特别喜欢的人非常非常的难，所以我不想就这样错过你，这不只是上天给我的一次机会，而且也是给你的一次机会，防止你错过我这么温柔、善良、体贴、乐观的男生。哈哈哈
 		 * 
