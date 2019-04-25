@@ -117,7 +117,7 @@ public class YbMainConfig extends JFinalConfig {
 		//初始化微信菜单
 		//new MenuMangerLister().InitWechatMenu();
 		
-		//QuartzScanner.getInstance().Quzar();
+		QuartzScanner.getInstance().Quzar();
 	}
 
 }
